@@ -80,12 +80,22 @@ public extension Rules {
 
     /// Determines the frequency in which the user is prompted to update the app
     /// once a new version is available in the App Store and if they have not updated yet.
-    enum UpdatePromptFrequency: UInt {
+    enum UpdatePromptFrequency {
         /// Version check performed every time the app is launched.
-        case immediately = 0
-        /// Version check performed once a day.
-        case daily = 1
-        /// Version check performed once a week.
-        case weekly = 7
+      case immediately, daily, weekly
+      case custom(UInt)
+
+      var rawValue: UInt {
+        switch self {
+          case .immediately:
+            return 0
+          case .daily:
+            return 1
+          case .weekly:
+            return 7
+          case .custom(let customValue):
+            return customValue
+        }
+      }
     }
 }

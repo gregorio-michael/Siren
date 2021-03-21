@@ -207,7 +207,7 @@ private extension Siren {
         do {
             let rules = try rulesManager.loadRulesForUpdateType(updateType)
 
-            if rules.frequency == .immediately {
+            if rules.frequency.rawValue == Rules.UpdatePromptFrequency.immediately.rawValue {
                 presentAlert(withRules: rules, forCurrentAppStoreVersion: currentAppStoreVersion, model: model, andUpdateType: updateType)
             } else {
                 guard let alertPresentationDate = alertPresentationDate else {
